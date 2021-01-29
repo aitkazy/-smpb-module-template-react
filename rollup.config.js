@@ -7,17 +7,19 @@ import simplevars from 'postcss-simple-vars';
 import nested from 'postcss-nested';
 import cssnext from 'postcss-cssnext';
 import cssnano from 'cssnano';
+import json from '@rollup/plugin-json';
 
 export default {
   input: './src/index.js',
   output: [
     {
-      dir: "public/module",
-      format: "es",
+      dir: "public/nomodule",
+      format: "system",
       sourcemap: false
     }
   ],
   plugins: [
+    json(),
     postcss({
       plugins: [
         simplevars(),
@@ -35,7 +37,7 @@ export default {
       exclude: 'node_modules/**',
       babelHelpers: "bundled"
     }),
-    nodeResolve(),
-    commonjs({ include: /node_modules/ })
+    nodeResolve({ jsnext: true, preferBuiltins: true, browser: true }),
+    commonjs({ include: /node_modules/ }),
   ],
 };
