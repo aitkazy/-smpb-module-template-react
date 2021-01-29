@@ -8,11 +8,21 @@
 <body>
     <div id="root"></div>
     <script>
-        import('./module/index.js')
-            .then(({ render }) => {
+        const systemJsLoaderTag = document.createElement('script');
+        systemJsLoaderTag.src = 'https://unpkg.com/systemjs@2.0.0/dist/s.min.js';
+        systemJsLoaderTag.addEventListener('load', function () {
+            window.System.import('./nomodule/index.js')
+            .then(({ AppInstance }) => {
                 const rootElement = document.getElementById('root');
-                render(rootElement);
+
+                const myApp = new AppInstance({ rootElement });
+                myApp.mount();
+            })
+            .catch(error => {
+                console.log(error);
             });
+        });
+        document.head.appendChild(systemJsLoaderTag);
     </script>
 </body>
 </html>

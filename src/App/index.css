@@ -1,0 +1,19 @@
+.app--root {
+    text-align: center;
+}
+
+.title {
+    display: block;
+    font-size: 40px;
+}
+
+.paragraph {
+    display: block;
+    font-size: 24px;
+}
+
+.black-box {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+}
