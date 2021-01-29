@@ -2,6 +2,7 @@ import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { App } from './App';
 import { AppGlobalsProvider } from './contexts/appGlobals';
+import { appId } from '../package.json';
 
 export class AppInstance {
     constructor(_boostrap = {}) {
@@ -30,7 +31,9 @@ export class AppInstance {
                 onResult={this._setResult}
                 appSettings={this._settings}
             >
-                <App />
+                <div className={appId}>
+                    <App />
+                </div>
             </AppGlobalsProvider>,
             this._rootElement
         );

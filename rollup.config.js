@@ -8,6 +8,16 @@ import nested from 'postcss-nested';
 import cssnext from 'postcss-cssnext';
 import cssnano from 'cssnano';
 import json from '@rollup/plugin-json';
+import postcssModules from 'postcss-modules';
+import { appId } from './package.json';
+
+if (!appId || appId === "template") {
+  throw new Error("Укажите уникальный 'appId' в package.json !");
+}
+
+const generateScopedName = (name, filename, css) => {
+  return `${appId} .${name}`;
+};
 
 export default {
   input: './src/index.js',
@@ -22,6 +32,10 @@ export default {
     json(),
     postcss({
       plugins: [
+        postcssModules({
+          generateScopedName,
+          getJSON: () => {}
+        }),
         simplevars(),
         nested(),
         cssnext(),
