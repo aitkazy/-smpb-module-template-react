@@ -1,6 +1,6 @@
 {
   "name": "-smpb-module-template-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "appId": "template",
   "main": "index.js",
   "repository": "git@github.com:aitkazy/-smpb-module-template-react.git",

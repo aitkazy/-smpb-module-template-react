@@ -12,7 +12,7 @@ import postcssModules from 'postcss-modules';
 import { uglify } from 'rollup-plugin-uglify';
 import { appId } from './package.json';
 
-if (!appId || (process.env.NODE_ENV === 'production' && appId === "template")) {
+if (!appId || appId === "template") {
   throw new Error("Укажите уникальный 'appId' в package.json !");
 }
 
