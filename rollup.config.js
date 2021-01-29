@@ -9,6 +9,7 @@ import cssnext from 'postcss-cssnext';
 import cssnano from 'cssnano';
 import json from '@rollup/plugin-json';
 import postcssModules from 'postcss-modules';
+import { uglify } from 'rollup-plugin-uglify';
 import { appId } from './package.json';
 
 if (!appId || (process.env.NODE_ENV === 'production' && appId === "template")) {
@@ -53,5 +54,6 @@ export default {
     }),
     nodeResolve({ jsnext: true, preferBuiltins: true, browser: true }),
     commonjs({ include: /node_modules/ }),
+    (process.env.NODE_ENV === 'production' && uglify())
   ],
 };
