@@ -11,7 +11,7 @@ import json from '@rollup/plugin-json';
 import postcssModules from 'postcss-modules';
 import { appId } from './package.json';
 
-if (!appId) {
+if (!appId || (process.env.NODE_ENV === 'production' && appId === "template")) {
   throw new Error("Укажите уникальный 'appId' в package.json !");
 }
 
